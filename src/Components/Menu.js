@@ -1,33 +1,38 @@
-import React,{useState,useEffect} from "react";
+import Header from './Header';
+import Hero from './Hero';
+import SpecialDishes from './SpecialDishes';
+import FilteredDishes from "./FilteredDishes";
+import {AllMenus} from "./AllMenuContext"; //if it is named export then use  {}
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Checkout from './Checkout';
+import { AppProvider } from '../context/AppProvider';
+
+
 function Menu(){
-    let [menu,setMenu] = useState([])
-    async function getData(){
-        const API_URL ="https://www.themealdb.com/api/json/v1/1/search.php?f=a";
-        let response = await fetch(API_URL);
-        let data = await response.json()
-        setMenu(data.meals)
-        
-    }
-   useEffect(()=>{
-    getData()
-   },[])
-   console.log(menu)
-   let meals= menu.map((item)=>{
-    return(
-        <div>
-            <img src={item.strMealThumb}/>
-            <h1>{item.strCategory}</h1>
-        </div>
-       
-        
-    )
-   })
+   
 return(
-    <div>{meals}</div>
+    <div>
+        <Router>
+            <AppProvider>
+                <Header/>  
+                <Hero/>
+                <Switch>
+                    <Route exact path="/">
+                        <AllMenus>
+                        <SpecialDishes/>
+                        <FilteredDishes /> 
+                        </AllMenus>
+                    </Route>
+                    <Route path="/checkout">
+                    <Checkout/>
+                    </Route>
+                </Switch>
+            </AppProvider>
+        </Router>
+        
+    </div>
+    
     
 )
-    
-
 }
-
 export default Menu;

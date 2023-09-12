@@ -13,7 +13,7 @@ function AppProvider({children}) {
             case "add_to_cart" :
                 return (
                     {
-                      ...state, cartItems: [action.payload.img,action.payload.title]
+                      ...state, cartItems: [...state.cartItems,action.payload]
                     }
                 )
             default :
@@ -22,8 +22,6 @@ function AppProvider({children}) {
 
     }
     let [state,dispatch] = useReducer(reducer,initialState)
-
-    console.log("state is",state)
   return (
 
             <DispatchContext.Provider value={dispatch}>

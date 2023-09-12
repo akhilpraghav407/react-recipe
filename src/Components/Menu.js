@@ -17,13 +17,13 @@ return(
                 <Header/>  
                 <Hero/>
                 <Switch>
-                    <Route exact path="/">
+                    <Route exact path="/" >
                         <AllMenus>
                         <SpecialDishes/>
                         <FilteredDishes /> 
                         </AllMenus>
                     </Route>
-                    <Route path="/checkout">
+                    <Route path="/checkout" element={< Checkout />}>
                     <Checkout/>
                     </Route>
                 </Switch>

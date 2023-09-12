@@ -2,16 +2,28 @@ import { StateContext } from '../context/AppProvider';
 import React,{useContext} from 'react';
 
 function Checkout() {
-  const cartPackage = useContext(StateContext)
+  const cartPackage = useContext(StateContext);
+  console.log("cartpackages are......",cartPackage)
 
+  let cartPackagesAre = cartPackage.cartItems.map((item)=>{
+    return(
+      <div>
+              <img src={item.img}/>
+              <h3>{item.title}</h3>
+      </div>
+    )
+  })
 
   return (
-    <div>
-      <h2>This is checkout Page......</h2>
-      <h6>hello</h6>
-       <img src={cartPackage.cartItems[0]} />
-          <h6>{cartPackage.cartItems[1]}</h6>
+    <div className='special-dishes'>
+        <div className='special-dishes-menu'>
+            <div className='flex flex-wrap gap-25'>
+              {cartPackagesAre}
+            </div>
+      
+        </div>
     </div>
+   
   )
 }
 

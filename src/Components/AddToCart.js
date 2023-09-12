@@ -5,12 +5,24 @@ import React, { useContext } from 'react';
 function AddToCart({addTocartItem}) {
 
   const cartPackage = useContext(StateContext)
+  console.log("cartpackage",cartPackage)
+
+  let cartPackagesAre = cartPackage.cartItems.map((item)=>{
+
+          return(
+            <div>
+                <img src={item.img} />
+                <h6>{item.title}</h6>
+            </div>
+          )
+  })
   
   let addToCartResults = addTocartItem.map((item)=>{
     return(
       <div>
         <img src={item.img} />
         <h6>{item.title}</h6>
+        <hr />
       </div>
       
     )
@@ -18,8 +30,7 @@ function AddToCart({addTocartItem}) {
   return (
     <div className='add-to-cart-wrapper'>
         <div className='add-to-cart-item'>
-          <img src={cartPackage.cartItems[0]} />
-          <h6>{cartPackage.cartItems[1]}</h6>
+        {cartPackagesAre}
         </div>
       
     </div>
